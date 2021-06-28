@@ -73,15 +73,17 @@ function showJokes(){
     })
 }
 
-function newJoke(){
-    $.ajax({
-        type: 'GET',
-        url: "/jokeCache"
-    }).then (function(res){
-        // $('#solution').empty();
-        $('#outputDiv').append(`<p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchLine} </p>`);
-        console.log('Response is', res)
-    }).catch ( function (err){
-        console.log ('Error in sending answer', err);
-    })
-}
+// function newJoke(){
+//     $.ajax({
+//         type: 'GET',
+//         url: "/jokeCache"
+//     }).then (function(res){
+//         for (let joke of res){
+//         // $('#solution').empty();
+//         $('#outputDiv').append(`<p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchLine} </p>`);
+//     }
+//         console.log('Response is', res)
+//         }).catch ( function (err){
+//         console.log ('Error in sending answer', err);
+//     })
+// }
