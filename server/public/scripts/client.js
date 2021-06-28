@@ -37,7 +37,7 @@ function addJokes(){
             } 
         }) .then( function ( res ){
             clearInputs();
-            showJokes();
+            newJoke();
         }).catch ( function (err){
             console.log ('Error in sending equation', err);
         })
@@ -70,5 +70,18 @@ function showJokes(){
         console.log('Jokes are', res)
     }).catch ( function (err){
         console.log ('Error in sending jokes', err);
+    })
+}
+
+function newJoke(){
+    $.ajax({
+        type: 'GET',
+        url: "/jokeCache"
+    }).then (function(res){
+        // $('#solution').empty();
+        $('#outputDiv').append(`<p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchLine} </p>`);
+        console.log('Response is', res)
+    }).catch ( function (err){
+        console.log ('Error in sending answer', err);
     })
 }
