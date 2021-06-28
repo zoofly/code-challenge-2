@@ -5,6 +5,7 @@ $( document ).ready( onReady );
 function onReady() {
     console.log('DOM ready');
     $('#addJokeButton').on('click', addJokes);
+    showJokes();
 
 }
 
