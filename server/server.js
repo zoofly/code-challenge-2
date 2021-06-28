@@ -58,7 +58,7 @@ app.get('/jokes', (req, res)=>{
   res.send(jokes);
 })
 
-// app.get('/jokeCache', function (req, res){
-//   res.send(jokes[ jokes.length -1]);
+app.get('/jokes', function (req, res){
+  res.send(jokes[ jokes.length -1]);
 
-// })
+})
