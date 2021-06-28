@@ -4,7 +4,7 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
-    $('addJokeButton').on('click', addJokes);
+    $('#addJokeButton').on('click', addJokes);
 
 }
 
@@ -22,7 +22,7 @@ function addJokes(){
         alert ('Whose joke is this?');
     } else if( jokeQuestion=== ""){
         alert('What?')
-    } else {
+     } else {
         //sending objects to server 
         $.ajax({
             type:"POST",
@@ -36,12 +36,12 @@ function addJokes(){
             } 
         }) .then( function ( res ){
             clearInputs();
-            showHistory();
+            // showHistory();
         }).catch ( function (err){
             console.log ('Error in sending equation', err);
         })
     }
-    //create string and send it to server
+   // create string and send it to server
     
     console.log('in addJokes... to be sent to server', whoseJoke, jokeQuestion, punchline);
 }
@@ -57,28 +57,28 @@ function clearInputs(){
 
 
 
-function showSolution(){
-    $.ajax({
-        type: 'GET',
-        url: "/history"
-    }).then (function(res){
-        $('#solution').empty();
-        $('#solution').append(res.answer);
-        console.log('Response is', res)
-    }).catch ( function (err){
-        console.log ('Error in sending answer', err);
-    })
-}
+// function showSolution(){
+//     $.ajax({
+//         type: 'GET',
+//         url: "/history"
+//     }).then (function(res){
+//         $('#solution').empty();
+//         $('#solution').append(res.answer);
+//         console.log('Response is', res)
+//     }).catch ( function (err){
+//         console.log ('Error in sending answer', err);
+//     })
+// }
 
 
 function showHistory(){
     $.ajax({
         type: 'GET',
-        url: "/calculation"
+        url: "/jokeCache"
     }).then (function(res){
-        for( let item of res){
-            $('#calcHistory').append(`
-            <li> ${item.numberOne} ${item.operator} ${item.numberTwo} = ${item.answer}</li>
+        for( let joke of res){
+            $('#outputDiv').append(`
+            <p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchline} </p>
             `);
         }
         console.log('History response is', res)
