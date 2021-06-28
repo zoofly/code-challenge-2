@@ -76,7 +76,7 @@ function showJokes(){
 function newJoke(){
     $.ajax({
         type: 'GET',
-        url: "/jokes"
+        url: "/currentJokes"
     }).then (function(res){
         $('#outputDiv').append(`<p> ${res.whoseJoke} ${res.jokeQuestion} ${res.punchLine} </p>`);
         console.log('Response is', res)

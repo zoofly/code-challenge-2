@@ -58,7 +58,7 @@ app.get('/jokes', (req, res)=>{
   res.send(jokes);
 })
 
-app.get('/jokes', function (req, res){
+app.get('/currentJokes', function (req, res){
   res.send(jokes[ jokes.length -1]);
 
 })
