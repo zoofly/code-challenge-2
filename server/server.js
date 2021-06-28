@@ -53,3 +53,7 @@ app.post('/jokeCache', (req,res) =>{
   console.log(jokes);
   res.sendStatus(201);
 })
+
+app.get('/jokes', (req, res)=>{
+  res.send(jokes);
+})

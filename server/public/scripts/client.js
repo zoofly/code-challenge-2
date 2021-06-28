@@ -15,8 +15,8 @@ function addJokes(){
     console.log('Joke added');
     let whoseJoke =$('#whoseJokeIn').val();
     let jokeQuestion= $('#questionIn').val();
-    let punchline = $('#punchlineIn').val();
-    if(punchline=== ""){
+    let punchLine = $('#punchlineIn').val();
+    if(punchLine=== ""){
         alert('Where is the punchline?');
     } else if(whoseJoke=== ""){
         alert ('Whose joke is this?');
@@ -31,19 +31,19 @@ function addJokes(){
                 
                 whoseJoke,
                 jokeQuestion,
-                punchline
+                punchLine
 
             } 
         }) .then( function ( res ){
             clearInputs();
-            // showHistory();
+            showJokes();
         }).catch ( function (err){
             console.log ('Error in sending equation', err);
         })
     }
    // create string and send it to server
     
-    console.log('in addJokes... to be sent to server', whoseJoke, jokeQuestion, punchline);
+    console.log('in addJokes... to be sent to server', whoseJoke, jokeQuestion, punchLine);
 }
 
 
@@ -56,33 +56,18 @@ function clearInputs(){
 
 
 
-
-// function showSolution(){
-//     $.ajax({
-//         type: 'GET',
-//         url: "/history"
-//     }).then (function(res){
-//         $('#solution').empty();
-//         $('#solution').append(res.answer);
-//         console.log('Response is', res)
-//     }).catch ( function (err){
-//         console.log ('Error in sending answer', err);
-//     })
-// }
-
-
-function showHistory(){
+function showJokes(){
     $.ajax({
         type: 'GET',
-        url: "/jokeCache"
+        url: "/jokes"
     }).then (function(res){
         for( let joke of res){
             $('#outputDiv').append(`
-            <p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchline} </p>
+            <p> ${joke.whoseJoke} ${joke.jokeQuestion} ${joke.punchLine} </p>
             `);
         }
-        console.log('History response is', res)
+        console.log('Jokes are', res)
     }).catch ( function (err){
-        console.log ('Error in sending answer', err);
+        console.log ('Error in sending jokes', err);
     })
 }
